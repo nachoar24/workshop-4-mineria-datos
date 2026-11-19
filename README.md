@@ -15,3 +15,15 @@ Se conserva la descarga original del consolidado de accidentes de tránsito con 
 ## Ejecución
 
 Instala los paquetes de `requirements.txt` y abre `lab4_IC2025.ipynb` en Jupyter, VS Code o Google Colab. Ejecuta todas las celdas en orden. El notebook descarga el CSV de este repositorio público, realiza el EDA y guarda `data_process.csv` en la carpeta de ejecución.
+
+## Entregables y resultados
+
+- `lab4_IC2025.ipynb` contiene el desarrollo documentado y ejecutado, con siete gráficos.
+- `data_process.csv` contiene las 93.699 observaciones y 82 columnas numéricas resultantes del EDA, sin nulos finales.
+- `datos/accidentes_cosevi_2020_2025.csv` conserva el dataset completo de origen.
+
+El objetivo de clasificación es distinguir accidentes con personas fallecidas o heridas graves de accidentes con solo heridos leves. Se propone un árbol de decisión y se justifica su configuración. La imputación, la conservación de atípicos y la codificación de cada tipo de variable se documentan en el notebook.
+
+Para ejecutarlo localmente, instala las dependencias en tu entorno de Python con `python -m pip install -r requirements.txt`, abre el notebook en VS Code con Jupyter o en otro editor compatible y ejecuta todas las celdas. También puede abrirse en Google Colab. El dataset se lee de un commit fijo de este repositorio público.
+
+El archivo solicitado para subir al campus virtual es `lab4_IC2025.ipynb`.
