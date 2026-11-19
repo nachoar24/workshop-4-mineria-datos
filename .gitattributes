@@ -1,0 +1,2 @@
+datos/*.csv -text
+*.ipynb text eol=lf
