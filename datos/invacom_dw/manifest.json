@@ -1,0 +1,13 @@
+{
+  "source": "Oracle INVACOM_DW",
+  "extracted_at_utc": "2026-11-26T20:56:15.680460+00:00",
+  "rows": 2155,
+  "sha256": "d8fcb1539f76b36b9210d2a08e51df3e9ae371482e929b808fadedad033adc7d",
+  "totals": {
+    "lineas": "2155",
+    "unidades": "51317",
+    "bruto": "1354458.59",
+    "descuento": "88665.83",
+    "neto": "1265792.76"
+  }
+}
