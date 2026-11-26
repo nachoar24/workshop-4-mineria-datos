@@ -1,32 +1,24 @@
-# Workshop 4 · EDA del Proyecto 1 de INVACOM
-
+# Laboratorio 4 · EDA de INVACOM_DW
 Universidad Técnica Nacional · ISW-911 Minería de Datos
 
 ## Integrantes
-
 - Gaudy Yuliana Chacón Alpizar
 - Joab Mauricio Montero Montero
 - Ignacio Araya Rojas
 - Stuarth Fabricio Miranda Rojas
 
-## Fuente y alcance
+## Fuente
+El análisis usa exclusivamente INVACOM_DW (FACT_VENTAS, DIM_TIEMPO, DIM_PRODUCTO, DIM_CLIENTE). Los CSV históricos de Northwind se conservan como antecedentes, no se consumen en el notebook. La sustitución de datos abiertos corresponde al alcance solicitado por el grupo.
 
-Esta versión se basa en las fuentes Northwind del Proyecto 1 de INVACOM, según la aclaración del grupo. Esa selección sustituye el criterio de elegir datos abiertos de Costa Rica indicado en el punto 2 del PDF original del Workshop 4.
+## Ejecución
+1. Clonar el repositorio y ejecutar `python -m pip install -r requirements.txt`.
+2. Desde un equipo con acceso a Oracle ejecutar `python exportar_invacom_dw.py`. Ingresar DSN (por ejemplo localhost:1521/XEPDB1, o el servicio real), usuario INVACOM_DW por defecto y contraseña cuando se solicite. También acepta ORACLE_DSN, ORACLE_USER, ORACLE_PASSWORD por variables de entorno. Nunca publicar credenciales.
+3. Revisar y publicar `datos/invacom_dw/invacom_dw_ventas.csv` y `datos/invacom_dw/manifest.json` (sin caracteres invisibles: carpeta invacom_dw). El exportador concilia contra los hechos de Oracle y genera SHA-256.
+4. Abrir lab4_IC2025.ipynb; fijar REF_GIT al commit de la extracción, ejecutar todas las celdas, guardar salidas y publicar data_process.csv. Alternativamente ejecutar `jupyter nbconvert --to notebook --execute --inplace lab4_IC2025.ipynb`.
+5. Entregar lab4_IC2025.ipynb en el campus.
 
-Se conservan completos los cinco CSV usados en el alcance comercial del Proyecto 1, dentro de `datos/northwind/`. Sus huellas y conteos se documentan en `manifest.json`. Northwind es un escenario ficticio de ejemplo, como explica [Microsoft](https://learn.microsoft.com/en-us/power-apps/maker/canvas-apps/northwind-install).
+## Controles
+Referencias históricas TKT-17: 2155 líneas, 51317 unidades, bruto 1354458.59, descuento 88665.83, neto 1265792.76. Se validan los totales reales contra el manifiesto, no se fuerzan las cifras históricas. Los importes y sus derivados quedan fuera de los predictores de cantidad. No se crean nulos artificiales. Se propone árbol de regresión.
 
-El notebook descarga los CSV de un commit fijo de este repositorio público y verifica sus huellas SHA-256. Integra las líneas de pedido con pedidos, productos, clientes y categorías, conservando 2.155 líneas de 830 pedidos. El análisis selecciona los atributos comerciales y mantiene disponibles los archivos originales completos.
-
-Se concilian 51.317 unidades, importe bruto 1.354.458,59, descuento monetario 88.665,83 e importe neto 1.265.792,76 con las reglas del Proyecto 1. Se propone un árbol de regresión para la cantidad vendida por línea.
-
-## Archivos y ejecución
-
-- `lab4_IC2025.ipynb` contiene el desarrollo documentado y ejecutado, con siete gráficos.
-- `data_process.csv` contiene 2.155 filas y 208 columnas numéricas, sin nulos finales.
-- `datos/northwind/` contiene las cinco fuentes originales completas y su manifiesto.
-
-Instala las dependencias con `python -m pip install -r requirements.txt` y abre el notebook en Jupyter, VS Code con Jupyter o Google Colab. Ejecuta las celdas en orden para repetir el EDA y generar el CSV.
-
-El notebook diferencia las columnas de predicción de las de auditoría. Los identificadores y los importes calculados a partir de la cantidad se conservan para conciliación. Las imputaciones, la codificación, la estandarización y la conservación de los atípicos se justifican dentro del proceso.
-
-El archivo solicitado para subir al campus es `lab4_IC2025.ipynb`.
+## Estado
+Código adaptado; pendiente exportar desde una instancia Oracle accesible y ejecutar el notebook. El CSV procesado anterior no corresponde a esta versión y no debe utilizarse para entregar.
